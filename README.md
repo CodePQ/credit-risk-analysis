@@ -1,27 +1,103 @@
-# Credit Risk & Default Probability Modeling
+Credit Default Risk Modeling
+Overview
 
-## Project Overview
-This project builds an interpretable credit risk model to estimate the probability of default and support lending decisions under uncertainty. The emphasis is on decision support, interpretability, and cost-sensitive evaluation rather than maximizing predictive accuracy alone.
+This project focuses on building and evaluating predictive models to assess credit default risk using customer demographic, financial, and behavioral data. The goal is to compare multiple classification approaches and identify a model that best supports lending and underwriting decisions, with particular attention to performance on an imbalanced dataset.
 
-## Business Problem
-Financial institutions must balance loan approval rates against default risk. Poorly calibrated or opaque models can lead to excessive losses or overly conservative lending. This project focuses on modeling default risk in a way that is transparent, auditable, and aligned with real-world lending tradeoffs.
+The analysis progresses from interpretable baseline models to more advanced ensemble methods, highlighting trade-offs between accuracy, recall, and overall risk discrimination.
 
-## Data
-The analysis uses the publicly available "Default of Credit Card Clients" dataset from the UCI Machine Learning Repository. The dataset contains borrower demographics, credit limits, repayment history, bill amounts, and payment behavior, along with a binary indicator of default in the following month.
+Dataset
 
-## Methodology (Planned)
-The project follows a disciplined workflow:
-- Structural and semantic exploratory data analysis (completed)
-- Feature type classification based on domain knowledge
-- Interpretable baseline modeling using logistic regression
-- Evaluation under class imbalance using ROC and precision–recall metrics
-- Threshold-based decision analysis reflecting asymmetric error costs
+Credit card customer data with demographic, financial, and behavioral features
 
-## Current Status
-- Raw data ingestion and validation completed
-- Target variable and class imbalance assessed
-- Feature types classified (continuous, ordinal, categorical)
-- No preprocessing, encoding, or modeling performed yet
+Binary target variable indicating default status
 
-## Notes
-This model is intended as a decision-support tool and does not replace human judgment. Dataset limitations and ethical considerations will be explicitly discussed.
+Class imbalance present (~22% default rate)
+
+Modeling Approach
+
+The following classification models were implemented and benchmarked:
+
+Logistic Regression
+
+Decision Tree
+
+Random Forest
+
+Gradient Boosting
+
+XGBoost
+
+Models were evaluated using:
+
+ROC-AUC (primary ranking metric)
+
+Precision, recall, and F1-score
+
+Confusion matrices
+
+Precision–Recall curves
+
+This approach allows comparison of both predictive performance and risk trade-offs relevant to real-world credit decisions.
+
+Key Results
+
+Ensemble models significantly outperformed baseline Logistic Regression.
+
+ROC-AUC improved from 0.72 (Logistic Regression) to 0.79 (Random Forest).
+
+Recall increased from 24% to approximately 35–36%, improving identification of high-risk borrowers.
+
+Overall accuracy remained stable at ~81%, highlighting the importance of ROC-AUC and recall over accuracy alone in imbalanced credit data.
+
+Recommended model: Random Forest, based on superior ranking performance and balanced precision–recall behavior.
+
+Business Relevance
+
+In credit risk applications, missed defaults (false negatives) can be costly. This project emphasizes:
+
+Evaluating models beyond accuracy
+
+Understanding precision–recall trade-offs
+
+Aligning model selection with business risk tolerance
+
+Threshold tuning and cost-sensitive modeling are identified as natural next steps for deployment-oriented use.
+
+Project Structure
+credit-default-risk/
+│
+├── data/
+│   └── credit_default.csv
+│
+├── notebooks/
+│   └── credit_default_prediction.ipynb
+│
+├── README.md
+└── requirements.txt
+
+Tools & Technologies
+
+Python
+
+pandas, NumPy
+
+scikit-learn
+
+XGBoost
+
+Matplotlib / Seaborn
+
+Future Improvements
+
+Threshold optimization based on business objectives
+
+Cost-sensitive or class-weighted modeling
+
+Model explainability using SHAP values
+
+Probability calibration for deployment readiness
+
+Author
+
+Cody Paquette
+Data Science | Financial Analytics
